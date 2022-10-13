@@ -37,7 +37,8 @@
     <div class="flex-container" id="target">
         <div class="cycler">row item 1</div>   
         <div class="cycler">row item 2</div>  
-        <div class="cycler">row item 3</div>  
+        <div class="cycler">row item 3</div> 
+		
       </div>
       <label for="inputElement">Type something: </label>
               <input class="form-control" type="text" name="input" id="inputElement" value="">
@@ -46,6 +47,7 @@
       <button onclick="makeNewDiv()">Add Value</button>
       <button onclick="get()">GET</button>
       <button onclick="spin()">SPIN</button>
+	  <button onclick="swap()">SWAP</button> 
 	  <script>
 		function makeNewDiv() {
 			let element = document.createElement("div")
@@ -75,6 +77,21 @@
 				container.insertBefore(removedItem, container.firstChild)
 			}
 		}
+
+		function swap() {
+                let cyclerItems = document.getElementsByClassName("cycler")
+                let container = document.getElementById("target")
+                let a = Math.floor(Math.random() * cyclerItems.length)
+                let b = Math.floor(Math.random() * cyclerItems.length)
+                let firstInnerText = document.getElementsByClassName("cycler")[a]
+                let secondInnerText = document.getElementsByClassName("cycler")[b]
+                if(cyclerItems.length > 1) {
+                    let temp = firstInnerText.innerHTML
+                    firstInnerText.innerHTML = secondInnerText.innerHTML
+                    secondInnerText.innerHTML = temp
+                }
+            }
+  
 	</script>
   </body>
   

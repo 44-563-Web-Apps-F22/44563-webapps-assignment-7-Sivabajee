@@ -14,6 +14,7 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </head>
 <body>
+
     <h1 class="text-center"  style="color:blue" >Treasure hunt by siva bajee babu porandla</h1>
     <p class="text-center"  >Click on the chests to search for treasure</p>
     <p id="chests" class="text-center"  >Number of chests checked is zero</p>
@@ -57,6 +58,10 @@
       </div>
     </div>
 
+    <div class="container text-center">
+      <button class="btn btn-success" type="submit" onclick="resetGame()">Reset</button>
+  </div>
+
     <script>
       let ids = ["image1","image2","image3","image4","image5","image6","image7","image8","image9","image10",
       "image11","image12","image13","image14","image15","image16","image17","image18","image19","image20","image21",
@@ -65,7 +70,23 @@
       let chestCount =0;
       let score =0;
       let lastCheck =12;
-      let treasureLocation = 18;
+      var treasureLocation=Math.floor(Math.random()* 25)
+      console.log(treasureLocation)
+        function resetGame() {
+                treasureLocation = Math.floor(Math.random() * 25)
+                while(treasureLocation == 12) {
+                    treasureLocation = Math.floor(Math.random() * 25)
+                }
+                chestCount = 0
+                score = 0
+                document.getElementById("chests").innerHTML = "Number of chests checked is zero"
+                document.getElementById("score").innerHTML = "Score is unknown"
+                for(let i = 0; i < 25; i++) {
+                    if(i != 12) {
+                        document.getElementById(ids[i]).src = "treasureicon.png"
+                    }
+                }
+            }
       
       function check(position){
         // console.log("Chest Clicked\nPosition: " + position + "	ID: " +ids[position])
